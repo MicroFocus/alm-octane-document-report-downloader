@@ -1,0 +1,17 @@
+{
+  "name": "octane-document-report-downloader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@microfocus/alm-octane-js-rest-sdk": "^15.0.2-0.1",
+    "@microfocus/hpe-alm-octane-js-rest-sdk": "^12.60.4",
+    "dotenv": "^16.0.0"
+  }
+}
