@@ -8,18 +8,25 @@ class OctaneUtils {
 
     static getOctaneVanilla = ({ url, sharedSpace, workspace, clientId, clientSecret }) => {
         if (OctaneUtils.octaneVanilla) {
-            return octaneVanilla
+            return OctaneUtils.octaneVanilla
         }
 
         const urlData = url.split('://')
+
         const protocol = urlData[0]
-        const host = urlData[1].split(':')[0]
-        const portAndPath = urlData[1].split(':')[1].split('/')
-        const port = portAndPath[0]
+        const splitByPort = urlData[1].split(':')
+        const host = splitByPort[0]
+
+        const portAndPath = splitByPort.length === 2 ? splitByPort[1] : undefined
+        const port = portAndPath ? portAndPath.split('/')[0] : (protocol === 'https' ? 443 : 80)
+
         let pathPrefix = ''
 
-        for (let i = 1; i < portAndPath.length; i++) {
-            pathPrefix += '/' + portAndPath[i]
+        if (portAndPath) {
+            const pathSegments = portAndPath.split('/')
+            for (let i = 1; i < pathSegments.length; i++) {
+                pathPrefix += '/' + pathSegments[i]
+            }
         }
 
         OctaneUtils.octaneVanilla = new OctaneVanilla({

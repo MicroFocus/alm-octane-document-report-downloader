@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@microfocus/alm-octane-js-rest-sdk": "^15.0.2-0.1",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "validator": "^13.7.0",
+    "yargs": "^17.4.1"
   }
 }

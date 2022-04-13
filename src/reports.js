@@ -2,7 +2,7 @@ const fs = require('fs')
 const Query = require('@microfocus/alm-octane-js-rest-sdk/lib/query')
 const OctaneUtils = require('./utils/octaneUtils')
 const poll = require('./utils/requestUtils')
-const connectionData = require('./config/config')
+const { connectionData, reportData } = require('./config/config')
 
 const documentReportTemplateFields = [
     'header',
@@ -74,7 +74,7 @@ const prepareTemplateForGenerating = (template) => {
 
 const generateDocumentReport = async () => {
     const octane = OctaneUtils.getOctane(connectionData)
-    const template = await getDocumentReportTemplate(process.env.DOCUMENT_REPORT_TEMPLATE_NAME)
+    const template = await getDocumentReportTemplate(reportData.templateName)
     const documentReport = prepareTemplateForGenerating(template)
 
     const req = await octane.create('reports', documentReport)
@@ -101,12 +101,13 @@ const downloadGeneratedReport = async (attachmentId, fileName) => {
     const attachmentContent = await savePromise
 
     // const attachmentContent = await octane.getAttachmentContent(Octane.entityTypes.attachments).at(attachmentId)
+    const saveLocation = reportData.saveLocation
 
-    if (!fs.existsSync(process.env.DOCUMENT_REPORT_SAVE_LOCATION)) {
-        fs.mkdirSync(process.env.DOCUMENT_REPORT_SAVE_LOCATION, { recursive: true })
+    if (!fs.existsSync(saveLocation)) {
+        fs.mkdirSync(saveLocation, { recursive: true })
     }
 
-    fs.writeFileSync(process.env.DOCUMENT_REPORT_SAVE_LOCATION + '/' + fileName, attachmentContent)
+    fs.writeFileSync(saveLocation + '/' + fileName, attachmentContent)
 }
 
 module.exports = { generateDocumentReport, downloadGeneratedReport }
