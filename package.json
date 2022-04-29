@@ -1,8 +1,9 @@
 {
   "name": "octane-document-report-downloader",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Utility tool for generating and downloading ALM Octane requirement documents",
+  "main": "app.js",
+  "bin": "src/app.js",
   "scripts": {
     "start": "node src/app.js"
   },
@@ -10,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@microfocus/alm-octane-js-rest-sdk": "^15.0.2-0.1",
+    "@microfocus/alm-octane-js-rest-sdk": "^16.0.400",
     "dotenv": "^16.0.0",
     "validator": "^13.7.0",
     "yargs": "^17.4.1"

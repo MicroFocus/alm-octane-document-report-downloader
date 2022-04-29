@@ -1,8 +1,10 @@
 const fs = require('fs')
 const Query = require('@microfocus/alm-octane-js-rest-sdk/lib/query')
-const OctaneUtils = require('./utils/octaneUtils')
 const poll = require('./utils/requestUtils')
 const { connectionData, reportData } = require('./config/config')
+const Octane = require("@microfocus/alm-octane-js-rest-sdk").Octane
+
+const octane = new Octane(connectionData)
 
 const documentReportTemplateFields = [
     'header',
@@ -24,7 +26,6 @@ const documentReportTemplateFields = [
 ]
 
 const getDocumentReportTemplate = async (templateName) => {
-    const octane = OctaneUtils.getOctane(connectionData)
     const templates = await octane
         .get('report_configurations')
         .fields(documentReportTemplateFields)
@@ -47,7 +48,6 @@ const getDocumentReportTemplate = async (templateName) => {
 }
 
 const getTaskResult = async (taskId) => {
-    const octane = OctaneUtils.getOctane(connectionData)
     const tasks = await octane.get('background_tasks').fields('status', 'result').query(Query.field('id').equal(taskId).build()).execute()
 
     const task = tasks.data[0]
@@ -65,7 +65,7 @@ const getTaskResult = async (taskId) => {
 
 const prepareTemplateForGenerating = (template) => {
     const date = new Date()
-    template.file_name = `${template.file_name}_${date.getDate()}_${date.getMonth()}_${date.getFullYear()}_${date.getHours()}_${date.getMinutes()}_${date.getSeconds()}`
+    template.file_name = `${template.file_name}_${date.getDate()}_${date.getMonth() + 1}_${date.getFullYear()}_${date.getHours()}_${date.getMinutes()}_${date.getSeconds()}`
     delete template.type
     delete template.id
     delete template.workspace_id
@@ -73,7 +73,6 @@ const prepareTemplateForGenerating = (template) => {
 }
 
 const generateDocumentReport = async () => {
-    const octane = OctaneUtils.getOctane(connectionData)
     const template = await getDocumentReportTemplate(reportData.templateName)
     const documentReport = prepareTemplateForGenerating(template)
 
@@ -86,21 +85,7 @@ const generateDocumentReport = async () => {
 }
 
 const downloadGeneratedReport = async (attachmentId, fileName) => {
-    const octaneVanilla = OctaneUtils.getOctaneVanilla(connectionData)
-
-    const savePromise = new Promise((resolve, reject) => {
-        octaneVanilla.attachments.download({ id: attachmentId, filename: fileName }, function (err, data) {
-            if (err) {
-                reject(err)
-            } else {
-                resolve(data)
-            }
-        })
-    })
-
-    const attachmentContent = await savePromise
-
-    // const attachmentContent = await octane.getAttachmentContent(Octane.entityTypes.attachments).at(attachmentId)
+    const attachmentContent = await octane.getAttachmentContent(Octane.entityTypes.attachments).at(attachmentId).execute()
     const saveLocation = reportData.saveLocation
 
     if (!fs.existsSync(saveLocation)) {

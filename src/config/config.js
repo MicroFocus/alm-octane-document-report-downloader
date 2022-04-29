@@ -36,11 +36,11 @@ yargs.command({
         }
 
         connectionData = {
-            url: process.env.OCTANE_URL,
+            server: process.env.OCTANE_URL,
             sharedSpace: process.env.OCTANE_SHARED_SPACE,
             workspace: process.env.OCTANE_WORKSPACE,
-            clientId: process.env.OCTANE_CLIENT_ID,
-            clientSecret: process.env.OCTANE_CLIENT_SECRET
+            user: process.env.OCTANE_CLIENT_ID,
+            password: process.env.OCTANE_CLIENT_SECRET
         }
         reportData = {
             saveLocation: process.env.DOCUMENT_REPORT_SAVE_LOCATION,
@@ -92,11 +92,11 @@ yargs.command({
 
     handler(argv) {
         connectionData = {
-            url: argv.octaneUrl,
+            server: argv.octaneUrl,
             sharedSpace: argv.sharedSpace,
             workspace: argv.workspace,
-            clientId: argv.clientId,
-            clientSecret: argv.clientSecret
+            user: argv.clientId,
+            password: argv.clientSecret
         }
         reportData = {
             saveLocation: argv.saveLocation,
@@ -108,7 +108,7 @@ yargs.command({
 yargs.demandCommand(1)
 yargs.parse()
 
-if (!validator.isURL(connectionData.url, { protocols: [ 'http', 'https' ], require_protocol: true, require_tld: false})) {
+if (!validator.isURL(connectionData.server, { protocols: [ 'http', 'https' ], require_protocol: true, require_tld: false})) {
     throw new Error('A valid url must be provided for the octaneUrl property.')
 }
 
