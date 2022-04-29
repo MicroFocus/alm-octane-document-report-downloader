@@ -8,8 +8,8 @@
     "start": "node src/app.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
+  "contributors": ["Silviu-Constantin Anton <silviu-constantin.anton@microfocus.com>"],
   "dependencies": {
     "@microfocus/alm-octane-js-rest-sdk": "^16.0.400",
     "dotenv": "^16.0.0",
