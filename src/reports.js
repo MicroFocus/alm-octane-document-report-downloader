@@ -20,7 +20,7 @@ const Query = require('@microfocus/alm-octane-js-rest-sdk/lib/query')
 const poll = require('./utils/requestUtils')
 const { connectionData, reportData } = require('./config/config')
 
-const octane = new Octane({ ...connectionData, headers: { 'ALM-OCTANE-PRIVATE': 'true' } })
+const octane = new Octane({ ...connectionData, headers: { 'ALM-OCTANE-PRIVATE': true } })
 
 const documentReportTemplateFields = [
     'header',
