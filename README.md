@@ -78,13 +78,13 @@ Created a subdirectory in the current directory named `config` and inside it a f
 
 #### config/.env
 ```
-OCTANE_URL=http://localhost:8080
+OCTANE_URL="http://localhost:8080"
 OCTANE_SHARED_SPACE=1001
 OCTANE_WORKSPACE=1002
-OCTANE_CLIENT_ID=MyClientId
-OCTANE_CLIENT_SECRET=MyClientSecret
-DOCUMENT_REPORT_TEMPLATE_NAME=MyCustomTemplate
-DOCUMENT_REPORT_SAVE_LOCATION=reports
+OCTANE_CLIENT_ID="MyClientId"
+OCTANE_CLIENT_SECRET="MyClientSecret"
+DOCUMENT_REPORT_TEMPLATE_NAME="MyCustomTemplate"
+DOCUMENT_REPORT_SAVE_LOCATION="reports"
 ```
 
 Run the command:

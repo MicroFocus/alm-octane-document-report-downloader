@@ -97,7 +97,7 @@ const generateDocumentReport = async () => {
 
     const { background_task_id: taskId } = await req.execute()
 
-    return await poll(getTaskResult, [taskId], 18000, 3000)
+    return await poll(getTaskResult, [taskId], 60000, 3000)
 }
 
 const downloadGeneratedReport = async (attachmentId, fileName) => {
