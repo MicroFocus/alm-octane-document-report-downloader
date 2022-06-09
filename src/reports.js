@@ -72,10 +72,12 @@ const getTaskResult = async (taskId) => {
         throw new Error('No task was found with the id of ' + taskId)
     }
 
-    if (task.status !== 'Finished') {
-        return undefined
-    } else {
+    if (task.status === 'Finished') {
         return task.result
+    } else if (task.status === 'Error') {
+        throw new Error(task.result.description)
+    } else {
+        return undefined
     }
 }
 
@@ -97,7 +99,7 @@ const generateDocumentReport = async () => {
 
     const { background_task_id: taskId } = await req.execute()
 
-    return await poll(getTaskResult, [taskId], 60000, 3000)
+    return await poll(getTaskResult, [taskId], 120000, 3000)
 }
 
 const downloadGeneratedReport = async (attachmentId, fileName) => {
