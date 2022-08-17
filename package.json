@@ -1,7 +1,7 @@
 {
   "name": "octane-document-report-downloader",
   "version": "1.0.0",
-  "description": "Utility tool for generating and downloading ALM Octane requirement documents",
+  "description": "A node app utility that allows generating and downloading of an ALM Octane requirement document based on a given template.",
   "main": "app.js",
   "bin": "src/app.js",
   "scripts": {
@@ -9,10 +9,18 @@
   },
   "keywords": [],
   "license": "Apache-2.0",
-  "contributors": ["Silviu-Constantin Anton <silviu-constantin.anton@microfocus.com>"],
+  "contributors": [
+    "Silviu-Constantin Anton <silviu-constantin.anton@microfocus.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MicroFocus/alm-octane-document-report-downloader.git"
+  },
+  "homepage": "https://github.com/MicroFocus/alm-octane-document-report-downloader",
   "dependencies": {
     "@microfocus/alm-octane-js-rest-sdk": "^16.0.400",
     "dotenv": "^16.0.0",
+    "express": "^4.18.1",
     "validator": "^13.7.0",
     "yargs": "^17.4.1"
   }
