@@ -96,4 +96,6 @@ If the directory does not exist then it will be automatically created.
 
 ## Limitations
 
-The tool requires that the Report Document Template name is unique inside ALM Octane.
+* The tool requires that the Report Document Template name is unique inside ALM Octane
+* Widgets are supported in document reports starting with ALM Octane version 16.0.400
+* Octane might timeout for reports containing more than 4 widgets (ALM Octane Limitation)
