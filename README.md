@@ -1,4 +1,4 @@
-# octane-document-report-downloader
+# alm-octane-document-report-downloader
 
 ## How to install
 
@@ -7,11 +7,11 @@
 - Download the project locally
 - Navigate inside the project
 - run `npm i -g`
-- You can now run `npx octane-document-report-downloader` command from anywhere using a terminal
+- You can now run `npx alm-octane-document-report-downloader` command from anywhere using a terminal
 
 ### Run directly from the npm registry
 
-- Directly run `npx octane-document-report-downloader` command so that npm automatically downloads and runs the tool
+- Directly run `npx alm-octane-document-report-downloader` command so that npm automatically downloads and runs the tool
 
 ## How to use
 
@@ -21,7 +21,7 @@ The tool can be run using two types of configuration:
 
 ### Running using command line arguments
 
-#### Command to execute: `npx octane-document-report-downloader useArgs`
+#### Command to execute: `npx alm-octane-document-report-downloader useArgs`
 
 #### Required command line arguments:
 * `--octaneUrl` - ALM Octane URL
@@ -46,14 +46,14 @@ The tool can be run using two types of configuration:
 
 #### Example:
 ``` shell
-npx octane-document-report-downloader useArgs --octaneUrl="http://localhost:8080" --sharedSpace=1001 --workspace=1002 --clientId="MyClientId" --clientSecret="MyClientSecret" --templateName="MyCustomTemplate" --saveLocation="reports"
+npx alm-octane-document-report-downloader useArgs --octaneUrl="http://localhost:8080" --sharedSpace=1001 --workspace=1002 --clientId="MyClientId" --clientSecret="MyClientSecret" --templateName="MyCustomTemplate" --saveLocation="reports"
 ```
 A report will be generated using the `MyCustomTemplate` template and it will be downloaded inside the `reports/` directory.
 If the directory does not exist then it will be automatically created.
 
 ### Running using an environment file
 
-#### Command to execute: `npx octane-document-report-downloader useEnvFile`
+#### Command to execute: `npx alm-octane-document-report-downloader useEnvFile`
 
 Create a file with the `.env` extension (you can also name it just .env).
 The file should contain the following properties:
@@ -89,7 +89,7 @@ DOCUMENT_REPORT_SAVE_LOCATION="reports"
 
 Run the command:
 ```shell
-npx octane-document-report-downloader useEnvFile --path="config/.env"
+npx alm-octane-document-report-downloader useEnvFile --path="config/.env"
 ```
 A report will be generated using the `MyCustomTemplate` template and it will be downloaded inside the `reports/` directory.
 If the directory does not exist then it will be automatically created.

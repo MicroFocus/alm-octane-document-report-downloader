@@ -1,5 +1,5 @@
 {
-  "name": "octane-document-report-downloader",
+  "name": "@microfocus/alm-octane-document-report-downloader",
   "version": "1.0.0",
   "description": "A node app utility that allows generating and downloading of an ALM Octane requirement document based on a given template.",
   "main": "app.js",
