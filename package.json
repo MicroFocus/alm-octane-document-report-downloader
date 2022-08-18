@@ -7,14 +7,18 @@
   "scripts": {
     "start": "node src/app.js"
   },
-  "keywords": [],
+  "keywords": [
+    "octane",
+    "microfocus",
+    "alm"
+  ],
   "license": "Apache-2.0",
   "contributors": [
     "Silviu-Constantin Anton <silviu-constantin.anton@microfocus.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/MicroFocus/alm-octane-document-report-downloader.git"
+    "url": "git+https://github.com/MicroFocus/alm-octane-document-report-downloader.git"
   },
   "homepage": "https://github.com/MicroFocus/alm-octane-document-report-downloader",
   "dependencies": {
